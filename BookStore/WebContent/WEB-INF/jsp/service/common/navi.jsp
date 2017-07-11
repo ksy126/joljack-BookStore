@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
+<% String cp = request.getContextPath(); %>
 <header id="header">
 	<div class="header-middle">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-4">
 					<div class="logo pull-left">
-						<a href="#">쇼핑몰 이름 또는 로고 또는 이미지</a>
+						<a href="#"><img src="<%=cp%>/image/Logo.jpg" alt="" style="width: 139px;"></a>
 					</div>
 				</div>
 				<div class="col-sm-8">
@@ -14,7 +15,7 @@
 							<li><a href="/member/login.do"><i class="fa fa-lock"></i>로그인</a></li>
 							<li><a href="#"><i class="fa fa-star"></i> 장바구니</a></li>
 							<li><a href="#"><i class="fa fa-shopping-cart"></i>구매목록</a></li>
-							<li><a href="#"><i class="fa fa-user"></i> 회원가입</a></li>
+							<li><a href="/member/join.do"><i class="fa fa-user"></i> 회원가입</a></li>
 						</ul>
 					</div>
 				</div>

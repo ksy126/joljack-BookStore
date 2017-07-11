@@ -33,5 +33,21 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView("service/member/login");
 		return mav;
 	}
+	
+	/**
+	 * 회원가입 페이지 이동
+	 * 
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
+	public ModelAndView join(HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> map) throws Exception {
+
+		ModelAndView mav = new ModelAndView("service/member/join");
+		return mav;
+	}
 
 }

@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	String cp = request.getContextPath();
-%>
+<% String cp = request.getContextPath(); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,20 +29,20 @@
 						<div class="carousel-inner">
 							<div class="item active">
 								<div class="col-sm-12">
-									<img src="image/serviceImg/slider/slider01.jpg"
+									<img src="<%=cp%>/image/serviceImg/slider/slider01.jpg"
 										class="girl img-responsive" alt="" />
 								</div>
 							</div>
 							<div class="item">
 								<div class="col-sm-12">
-									<img src="image/serviceImg/slider/slider01.jpg"
+									<img src="<%=cp%>/image/serviceImg/slider/slider01.jpg"
 										class="girl img-responsive" alt="" />
 								</div>
 							</div>
 
 							<div class="item">
 								<div class="col-sm-12">
-									<img src="image/serviceImg/slider/slider01.jpg"
+									<img src="<%=cp%>/image/serviceImg/slider/slider01.jpg"
 										class="girl img-responsive" alt="" />
 								</div>
 							</div>
