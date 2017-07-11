@@ -12,8 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 메인 컨트롤러
- * 
- * @author Main Controller
  */
 @Controller("main")
 @RequestMapping("/main")
