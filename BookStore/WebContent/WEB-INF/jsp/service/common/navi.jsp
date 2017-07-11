@@ -6,7 +6,7 @@
 			<div class="row">
 				<div class="col-sm-4">
 					<div class="logo pull-left">
-						<a href="#"><img src="<%=cp%>/image/Logo.jpg" alt="" style="width: 139px;"></a>
+						<a href="/main/main.do"><img src="<%=cp%>/image/Logo.jpg" alt="" style="width: 139px;"></a>
 					</div>
 				</div>
 				<div class="col-sm-8">
@@ -46,7 +46,7 @@
 								</ul>
 							</li>
 							<li><a href="/main/notice.do" id="menu_notice">Notice</a></li>
-							<li><a href="#">Q n A</a></li>
+							<li><a href="/main/qa.do">Q n A</a></li>
 						</ul>
 					</div>
 				</div>

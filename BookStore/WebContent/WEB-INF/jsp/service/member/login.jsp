@@ -128,38 +128,34 @@
 					return false;
 				} else {
 					var params = "phone=" + phone;
-					$
-							.ajax({
-								type : "GET",
-								async : false,
-								url : "/auth/searchUserInfo.do",
-								data : params,
-								dataType : "json",
-								timeout : 30000,
-								cache : false,
-								contentType : "application/x-www-form-urlencoded;charset=UTF-8",
-								error : function(request, status, error) {
-									alert("작업 도중 오류가 발생하였습니다. 자세한 사항은 고객센터에 문의하십시오.");
-								},
-								success : function(data) {
-									if (data.memberVo == null) {
-										alert("일치하는 정보가 없습니다.");
-										$('#userInfoConfirm').hide();
-									} else {
-										$('#userInfoConfirm').show();
-										$('#userIdInfo').val(
-												data.memberVo.user_id);
-										$('#userPwdInfo').val(
-												data.memberVo.user_pwd);
-									}
-
-								}
-							});
+					$.ajax({
+						type : "GET",
+						async : false,
+						url : "/auth/searchUserInfo.do",
+						data : params,
+						dataType : "json",
+						timeout : 30000,
+						cache : false,
+						contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+						error : function(request, status, error) {
+							alert("작업 도중 오류가 발생하였습니다. 자세한 사항은 고객센터에 문의하십시오.");
+						},
+						success : function(data) {
+							if (data.memberVo == null) {
+								alert("일치하는 정보가 없습니다.");
+								$('#userInfoConfirm').hide();
+							} else {
+								$('#userInfoConfirm').show();
+								$('#userIdInfo').val(data.memberVo.user_id);
+								$('#userPwdInfo').val(data.memberVo.user_pwd);
+							}
+						}
+					});
 				}
 			};
 
 			_this.moveJoin = function() {
-				location.href = "/auth/join.do";
+				location.href = "/member/join.do";
 			}
 
 			_this.login = function() {
@@ -176,28 +172,27 @@
 					return false;
 				} else {
 					var params = "user_id=" + user_id + "&user_pwd=" + user_pwd;
-					$
-							.ajax({
-								type : "POST",
-								async : false,
-								url : "/auth/userLogin.do",
-								data : params,
-								dataType : "json",
-								timeout : 30000,
-								cache : false,
-								contentType : "application/x-www-form-urlencoded;charset=UTF-8",
-								error : function(request, status, error) {
-									alert("작업 도중 오류가 발생하였습니다. 자세한 사항은 고객센터에 문의하십시오.");
-								},
-								success : function(data) {
-									if (data.check == "no") {
-										alert("아이디 또는 비밀번호가 일치하지 않습니다.");
-									} else {
-										alert("환영합니다");
-										location.href = "/main/main.do";
-									}
-								}
-							});
+					$.ajax({
+						type : "POST",
+						async : false,
+						url : "/auth/userLogin.do",
+						data : params,
+						dataType : "json",
+						timeout : 30000,
+						cache : false,
+						contentType : "application/x-www-form-urlencoded;charset=UTF-8",
+						error : function(request, status, error) {
+							alert("작업 도중 오류가 발생하였습니다. 자세한 사항은 고객센터에 문의하십시오.");
+						},
+						success : function(data) {
+							if (data.check == "no") {
+								alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+							} else {
+								alert("환영합니다");
+								location.href = "/main/main.do";
+							}
+						}
+					});
 				}
 			}
 

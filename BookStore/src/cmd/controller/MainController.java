@@ -54,5 +54,25 @@ public class MainController {
 		mav.addObject("pageName", "notice");
 		return mav;
 	}
+	
+	/**
+	 * 쇼핑몰 문의하기 페이지 이동
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/qa.do")
+    public ModelAndView qa( 	HttpServletRequest 					request,
+    							HttpServletResponse 				response,
+    							@RequestParam(value="po", 			required=false, defaultValue="0") int po,
+    							@RequestParam Map<String, Object> 	pMap) throws Exception {
+    	// 기본 페이지 리스트 갯수
+		int DefaultPs = 12;
+		int poSet = po * DefaultPs;
+		ModelAndView mav = new ModelAndView("service/main/qa");
+    	return mav;
+    }
 
 }
