@@ -13,31 +13,32 @@
 
 <body>
 	<jsp:include page="../common/navi.jsp" />
-	<div class="container" style="margin-top: 2em; min-height: 450px;">
+	<div class="container" style="margin-top: 2em; min-height: 650px;">
 		<div>
 			<div class="col-sm-10" style="font-size: 24px; margin-bottom: 1.5em;">
 				<i class="fa fa-question-circle fa-3" aria-hidden="true"></i>&nbsp;<span>문의하기</span>
 			</div>
 		</div>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th style="width: 15%">번호</th>
-					<th style="width: 65%">제목</th>
-					<th style="width: 20%">작성자</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="row" items="${qaList}">
-					<tr onclick="app.moveQaDetail('${row.qa_no}')">
-						<td>${row.qa_no}</td>
-						<td>${row.qa_title}</td>
-						<td>${row.name}</td>
+		<div style="min-height: 550px;">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th style="width: 15%">번호</th>
+						<th style="width: 65%">제목</th>
+						<th style="width: 20%">작성자</th>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-
+				</thead>
+				<tbody>
+					<c:forEach var="row" items="${qaList}">
+						<tr onclick="app.moveQaDetail('${row.qa_no}')">
+							<td>${row.qa_no}</td>
+							<td>${row.qa_title}</td>
+							<td>${row.name}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
 		<div class="col-sm-8 col-sm-offset-2" align="center">
 			<ul class="pagination">
 				<c:if test="${po == 0}">
