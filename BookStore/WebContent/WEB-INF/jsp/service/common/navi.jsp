@@ -45,10 +45,16 @@
 							<li><a href="/main/main.do" id="menu_main">Home</a></li>
 							<li class="dropdown"><a href="#">Book<i class="fa fa-angle-down"></i></a>
 								<ul role="menu" class="sub-menu">
-									<li><a href="#">Products</a></li>
-									<li><a href="#">Product Details</a></li>
-									<li><a href="#">Checkout</a></li>
-									<li><a href="#">Cart</a></li>
+									<li><a href="#">소설</a></li>
+									<li><a href="#">자기계발</a></li>
+									<li><a href="#">시/에세이</a></li>
+									<li><a href="#">과학</a></li>
+									<li><a href="#">인문</a></li>
+									<li><a href="#">종교/역학</a></li>
+									<li><a href="#">청소년</a></li>
+									<li><a href="#">아동</a></li>
+									<li><a href="#">유아</a></li>
+									<li><a href="#">여행</a></li>
 								</ul>
 							</li>
 							<li><a href="/main/notice.do" id="menu_notice">Notice</a></li>

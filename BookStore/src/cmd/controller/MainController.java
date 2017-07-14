@@ -1,11 +1,13 @@
 package cmd.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import cmd.service.MainService;
+import cmd.vo.NoticeVO;
+import cmd.vo.QaVO;
 
 /**
  * 메인 컨트롤러
@@ -86,6 +90,22 @@ public class MainController {
 		mav.addObject("po", po);
 		return mav;
 	}
+	
+	/**
+	 * 쇼핑몰 공지사항 상세페이지 이동
+	 */
+	@RequestMapping(value = "/notice/detail.do")
+	public ModelAndView noticeDetais(HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> map) throws Exception {
+
+		NoticeVO noticeVo;
+
+		noticeVo = mainService.noticeInfoGET(map);
+
+		ModelAndView mav = new ModelAndView("service/main/noticeDetail");
+
+		mav.addObject("noticeVo", noticeVo);
+		return mav;
+	}
 
 	/**
 	 * 쇼핑몰 문의하기 페이지 이동
@@ -112,6 +132,102 @@ public class MainController {
 		ModelAndView mav = new ModelAndView("service/main/qa");
 		mav.addObject("qaList", qaList);
 		mav.addObject("po", po);
+		return mav;
+	}
+	
+	/**
+	 * 쇼핑몰 문의상세 페이지 이동
+	 */
+	@RequestMapping(value = "/qa/detail.do")
+	public ModelAndView qaDetais(HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> map) throws Exception {
+
+		QaVO qaVo;
+
+		qaVo = mainService.qaInfoGET(map);
+
+		ModelAndView mav = new ModelAndView("service/main/qaDetail");
+
+		mav.addObject("qaVo", qaVo);
+		return mav;
+	}
+	
+	/**
+	 * 쇼핑몰 문의등록 페이지 이동
+	 */
+	@RequestMapping(value = "/qa/write.do")
+	public ModelAndView qaWrite(HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> map) throws Exception {
+
+		ModelAndView mav = new ModelAndView("service/main/qaWrite");
+		mav.addObject("type", "write");
+		return mav;
+	}
+	
+	/**
+	 * 쇼핑몰 문의 등록
+	 * 
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/qa/saveQa.do")
+	public ModelAndView qaSave(HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> map) throws Exception {
+
+		mainService.qaInfoPost(map);
+
+		ModelAndView mav = new ModelAndView("redirect:/main/qa.do");
+		return mav;
+	}
+	
+	/**
+	 * 쇼핑몰 문의수정 페이지 이동
+	 */
+	@RequestMapping(value = "/qa/modify.do")
+	public ModelAndView qaModify(HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> map) throws Exception {
+		QaVO qaVo;
+		qaVo = mainService.qaInfoGET(map);
+		ModelAndView mav = new ModelAndView("service/main/qaWrite");
+
+		mav.addObject("type", "modify");
+		mav.addObject("qaVo", qaVo);
+		return mav;
+	}
+
+	/**
+	 * 쇼핑몰 문의 수정
+	 * 
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/qa/updateQa.do")
+	public ModelAndView updateQa(HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> map) throws Exception {
+
+		mainService.qaInfoPUT(map);
+
+		ModelAndView mav = new ModelAndView("redirect:/main/qa/detail.do?qa_no=" + map.get("qa_no").toString());
+		return mav;
+	}
+	
+	/**
+	 * 문의 삭제
+	 * 
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/qa/qaDelete.do")
+	public ModelAndView qaDelete(HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> map) throws Exception {
+
+		mainService.qaDelete(map);
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("jsonView");
 		return mav;
 	}
 
