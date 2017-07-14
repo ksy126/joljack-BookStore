@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <% String cp = request.getContextPath(); %>
 <header id="header">
 	<div class="header-middle">
@@ -12,10 +13,15 @@
 				<div class="col-sm-8">
 					<div class="shop-menu pull-right">
 						<ul class="nav navbar-nav">
-							<li><a href="/member/login.do"><i class="fa fa-lock"></i>로그인</a></li>
+						<c:if test="${sessionScope.sessionData.memberInfo.getMember_no() == null || sessionScope.sessionData.memberInfo.getMember_no() == ''}">
+							<li><a href="/auth/login.do"><i class="fa fa-lock"></i>로그인</a></li>
+						</c:if>
+						<c:if test="${sessionScope.sessionData.memberInfo.getMember_no() != null && sessionScope.sessionData.memberInfo.getMember_no() != ''}">
+							<li><a href="/auth/userLogout.do"><i class="fa fa-lock"></i>로그아웃</a></li>
+						</c:if>
 							<li><a href="#"><i class="fa fa-star"></i> 장바구니</a></li>
 							<li><a href="#"><i class="fa fa-shopping-cart"></i>구매목록</a></li>
-							<li><a href="/member/join.do"><i class="fa fa-user"></i> 회원가입</a></li>
+							<li><a href="/auth/join.do"><i class="fa fa-user"></i> 회원가입</a></li>
 						</ul>
 					</div>
 				</div>

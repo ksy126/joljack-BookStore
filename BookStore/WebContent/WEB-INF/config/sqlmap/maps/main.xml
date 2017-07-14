@@ -3,7 +3,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="main">
 
-
 	<update id="updateQaInfo" parameterType="map">
 		UPDATE
 		qa
@@ -32,25 +31,6 @@
 		)
 	</insert>
 
-
-	<insert id="purchaseInsert" parameterType="map">
-		INSERT INTO
-		purchase
-		(
-		member_no
-		, product_no
-		, quantity
-		, p_option
-		)
-		VALUES
-		(
-		#{member_no}
-		, #{product_no}
-		, #{quantity}
-		, #{p_option}
-		)
-	</insert>
-
 	<insert id="naviInfoInsert" parameterType="map">
 		INSERT INTO
 		navi
@@ -66,25 +46,6 @@
 		, #{insertDate}
 		)
 	</insert>
-
-	<select id="naviInfoList" parameterType="map" resultType="cmd.vo.NaviVO">
-		SELECT
-		p_name
-		, p_img
-		FROM
-		navi n
-		, product p
-		WHERE
-		n.product_no = p.product_no
-		AND
-		n.insertDate > CURRENT_DATE()
-		AND
-		n.member_no = #{member_no}
-		GROUP BY n.product_no
-		ORDER BY n.insertDate DESC
-		LIMIT 0,
-		3;
-	</select>
 
 	<select id="selectQaList" parameterType="map" resultType="cmd.vo.QaVO">
 		SELECT
@@ -140,44 +101,11 @@
 		notice_no = #{notice_no}
 	</select>
 
-	<delete id="zzimDelete" parameterType="map">
-		DELETE FROM
-		zzim
-		WHERE
-		zzim_no = #{zzim_no}
-	</delete>
-
-	<delete id="purchaseDelete" parameterType="map">
-		DELETE FROM
-		purchase
-		WHERE
-		purchase_no = #{purchase_no}
-	</delete>
-
 	<delete id="qaDelete" parameterType="map">
 		DELETE FROM
 		qa
 		WHERE
 		qa_no = #{qa_no}
 	</delete>
-
-	<select id="purchaseSelect" parameterType="map" resultType="cmd.vo.PurchaseVO">
-		SELECT
-		p.purchase_no
-		, p.product_no
-		, p.member_no
-		, p.quantity
-		, p.p_option
-		, pd.p_img
-		, pd.p_name
-		, pd.p_price
-		FROM
-		purchase p
-		, product pd
-		WHERE
-		p.product_no = pd.product_no
-		AND
-		member_no = #{member_no}
-	</select>
 
 </mapper>
