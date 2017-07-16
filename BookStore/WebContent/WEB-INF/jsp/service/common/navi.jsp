@@ -45,7 +45,7 @@
 							<li><a href="/main/main.do" id="menu_main">Home</a></li>
 							<li class="dropdown"><a href="#">Book<i class="fa fa-angle-down"></i></a>
 								<ul role="menu" class="sub-menu">
-									<li><a href="#">소설</a></li>
+									<li><a href="/main/shop/list/fiction.do">소설</a></li>
 									<li><a href="#">자기계발</a></li>
 									<li><a href="#">시/에세이</a></li>
 									<li><a href="#">과학</a></li>

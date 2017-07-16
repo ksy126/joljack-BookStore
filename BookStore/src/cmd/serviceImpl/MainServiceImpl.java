@@ -61,5 +61,12 @@ public class MainServiceImpl implements MainService
 		this.commonDao.deleteData("main.qaDelete", pMap);
 	}
 
+	@Override
+	public List<Object> productList(Map<String, Object> pMap) throws Exception {
+		List<Object> resultList = null;
+		resultList = this.commonDao.getListData("main.selectProductList", pMap);
+		return resultList;
+	}
+
 }//end class
 

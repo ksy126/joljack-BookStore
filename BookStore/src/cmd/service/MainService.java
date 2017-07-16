@@ -22,5 +22,7 @@ public interface MainService {
 	public void qaInfoPUT(Map<String, Object> pMap) throws Exception;
 	// 문의 삭제
 	public void qaDelete(Map<String, Object> pMap) throws Exception;
+	// 상품 리스트
+	public List<Object> productList(Map<String, Object> pMap) throws Exception;
 
 }

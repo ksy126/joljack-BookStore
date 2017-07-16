@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -38,7 +39,8 @@ public class MainController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/main.do")
-	public ModelAndView main(HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> pMap) throws Exception {
+	public ModelAndView main(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam Map<String, Object> pMap) throws Exception {
 		ModelAndView mav = new ModelAndView("service/main/main");
 
 		List<Object> noticeList;
@@ -62,6 +64,49 @@ public class MainController {
 	}
 
 	/**
+	 * 상품 목록
+	 * @param request
+	 * @param response
+	 * @param category
+	 * @param po
+	 * @param type
+	 * @param search
+	 * @param pMap
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/shop/list/{category}.do")
+	public ModelAndView shopList(HttpServletRequest request, HttpServletResponse response,
+			@PathVariable String category,
+			@RequestParam(value = "po", required = false, defaultValue = "0") int po,
+			@RequestParam(value = "type", required = false, defaultValue = "new") String type,
+			@RequestParam(value = "search", required = false, defaultValue = "") String search,
+			@RequestParam Map<String, Object> pMap) throws Exception {
+		// 기본 페이지 리스트 갯수.
+		int DefaultPs = 12;
+
+		int poSet = po * DefaultPs;
+
+		List<Object> itemList = null;
+		pMap.put("po", poSet);
+		pMap.put("ps", DefaultPs);
+		pMap.put("category", category);
+		pMap.put("search", search);
+		pMap.put("type", type);
+
+		itemList = mainService.productList(pMap);
+
+		ModelAndView mav = new ModelAndView("service/main/shopList");
+
+		mav.addObject("category", category);
+		mav.addObject("po", po);
+		mav.addObject("type", type);
+		mav.addObject("search", search);
+		mav.addObject("itemList", itemList);
+		return mav;
+	}
+
+	/**
 	 * 쇼핑몰 공지 페이지 이동
 	 * 
 	 * @param request
@@ -71,7 +116,8 @@ public class MainController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/notice.do")
-	public ModelAndView notice(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "po", required = false, defaultValue = "0") int po,
+	public ModelAndView notice(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "po", required = false, defaultValue = "0") int po,
 			@RequestParam Map<String, Object> pMap) throws Exception {
 		// 기본 페이지 리스트 갯수
 		int DefaultPs = 12;
@@ -90,12 +136,13 @@ public class MainController {
 		mav.addObject("po", po);
 		return mav;
 	}
-	
+
 	/**
 	 * 쇼핑몰 공지사항 상세페이지 이동
 	 */
 	@RequestMapping(value = "/notice/detail.do")
-	public ModelAndView noticeDetais(HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> map) throws Exception {
+	public ModelAndView noticeDetais(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam Map<String, Object> map) throws Exception {
 
 		NoticeVO noticeVo;
 
@@ -117,8 +164,9 @@ public class MainController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/qa.do")
-	public ModelAndView qa(HttpServletRequest request, HttpServletResponse response, @RequestParam(value = "po", required = false, defaultValue = "0") int po, @RequestParam Map<String, Object> pMap)
-			throws Exception {
+	public ModelAndView qa(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "po", required = false, defaultValue = "0") int po,
+			@RequestParam Map<String, Object> pMap) throws Exception {
 		// 기본 페이지 리스트 갯수
 		int DefaultPs = 12;
 		int poSet = po * DefaultPs;
@@ -134,12 +182,13 @@ public class MainController {
 		mav.addObject("po", po);
 		return mav;
 	}
-	
+
 	/**
 	 * 쇼핑몰 문의상세 페이지 이동
 	 */
 	@RequestMapping(value = "/qa/detail.do")
-	public ModelAndView qaDetais(HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> map) throws Exception {
+	public ModelAndView qaDetais(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam Map<String, Object> map) throws Exception {
 
 		QaVO qaVo;
 
@@ -150,18 +199,19 @@ public class MainController {
 		mav.addObject("qaVo", qaVo);
 		return mav;
 	}
-	
+
 	/**
 	 * 쇼핑몰 문의등록 페이지 이동
 	 */
 	@RequestMapping(value = "/qa/write.do")
-	public ModelAndView qaWrite(HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> map) throws Exception {
+	public ModelAndView qaWrite(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam Map<String, Object> map) throws Exception {
 
 		ModelAndView mav = new ModelAndView("service/main/qaWrite");
 		mav.addObject("type", "write");
 		return mav;
 	}
-	
+
 	/**
 	 * 쇼핑몰 문의 등록
 	 * 
@@ -172,19 +222,21 @@ public class MainController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/qa/saveQa.do")
-	public ModelAndView qaSave(HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> map) throws Exception {
+	public ModelAndView qaSave(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam Map<String, Object> map) throws Exception {
 
 		mainService.qaInfoPost(map);
 
 		ModelAndView mav = new ModelAndView("redirect:/main/qa.do");
 		return mav;
 	}
-	
+
 	/**
 	 * 쇼핑몰 문의수정 페이지 이동
 	 */
 	@RequestMapping(value = "/qa/modify.do")
-	public ModelAndView qaModify(HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> map) throws Exception {
+	public ModelAndView qaModify(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam Map<String, Object> map) throws Exception {
 		QaVO qaVo;
 		qaVo = mainService.qaInfoGET(map);
 		ModelAndView mav = new ModelAndView("service/main/qaWrite");
@@ -204,14 +256,15 @@ public class MainController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/qa/updateQa.do")
-	public ModelAndView updateQa(HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> map) throws Exception {
+	public ModelAndView updateQa(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam Map<String, Object> map) throws Exception {
 
 		mainService.qaInfoPUT(map);
 
 		ModelAndView mav = new ModelAndView("redirect:/main/qa/detail.do?qa_no=" + map.get("qa_no").toString());
 		return mav;
 	}
-	
+
 	/**
 	 * 문의 삭제
 	 * 
@@ -222,7 +275,8 @@ public class MainController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/qa/qaDelete.do")
-	public ModelAndView qaDelete(HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> map) throws Exception {
+	public ModelAndView qaDelete(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam Map<String, Object> map) throws Exception {
 
 		mainService.qaDelete(map);
 
