@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import cmd.vo.NoticeVO;
+import cmd.vo.ProductVO;
 import cmd.vo.QaVO;
 
 public interface MainService {
@@ -24,5 +25,19 @@ public interface MainService {
 	public void qaDelete(Map<String, Object> pMap) throws Exception;
 	// 상품 리스트
 	public List<Object> productList(Map<String, Object> pMap) throws Exception;
+	// 상품 상세 정보
+	public ProductVO productInfo(Map<String, Object> pMap) throws Exception;
+	// 회원 장바구니 리스트
+	public List<Object> myZzimList(Map<String, Object> pMap) throws Exception;
+	// 회원 장바구니 등록
+	public void zzimSave(Map<String, Object> pMap) throws Exception;
+	// 회원 장바구니 삭제
+	public void zzimDelete(Map<String, Object> pMap) throws Exception;
+	// 회원 구매 등록
+	public void parchase(Map<String, Object> pMap) throws Exception;
+	// 회원 구매 리스트
+	public List<Object> parchaseList(Map<String, Object> pMap) throws Exception;
+	// 회원 구매 정보 삭제
+	public void purchaseDelete(Map<String, Object> pMap) throws Exception;
 
 }

@@ -1,0 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
+<%
+	String cp = request.getContextPath();
+%>
+<!DOCTYPE html>
+<html>
+<jsp:include page="common/script.jsp" />
+
+<body>
+	<jsp:include page="common/navigation.jsp" />
+
+	<div id="page-wrapper">
+		<div class="row">
+			<div class="col-lg-12" align="center" style="margin-top: 2.5em;">
+				<img src="<%=cp%>/images/mainSlider/logo.png" alt="" width="30%">
+				<h1 class="page-header">관리자 페이지에 오신걸 환영 합니다.</h1>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

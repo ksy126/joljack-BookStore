@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import cmd.service.MainService;
 import cmd.vo.NoticeVO;
+import cmd.vo.ProductVO;
 import cmd.vo.QaVO;
 import helper.dao.CommonDAO;
 
@@ -66,6 +67,59 @@ public class MainServiceImpl implements MainService
 		List<Object> resultList = null;
 		resultList = this.commonDao.getListData("main.selectProductList", pMap);
 		return resultList;
+	}
+
+	@Override
+	public ProductVO productInfo(Map<String, Object> pMap) throws Exception {
+		ProductVO resultInfo = null;
+		resultInfo = (ProductVO) this.commonDao.getReadData("main.selectProductInfo", pMap);
+		return resultInfo;
+	}
+
+	@Override
+	public List<Object> myZzimList(Map<String, Object> pMap) throws Exception {
+		List<Object> result = null;
+		result = this.commonDao.getListData("main.selectZzimList", pMap);
+		return result;
+	}
+
+	@Override
+	public void zzimSave(Map<String, Object> pMap) throws Exception {
+		this.commonDao.insertData("main.zzimSave", pMap);
+	}
+
+	@Override
+	public void zzimDelete(Map<String, Object> pMap) throws Exception {
+		this.commonDao.deleteData("main.zzimDelete", pMap);
+	}
+
+	@Override
+	public void parchase(Map<String, Object> pMap) throws Exception {
+		// 상품 테이블 구매 수량 업데이트
+		this.commonDao.updateData("main.productUpdate", pMap);
+		// 구매 목록 테이블 업데이트
+		this.commonDao.insertData("main.purchaseInsert", pMap);
+	}
+
+	@Override
+	public List<Object> parchaseList(Map<String, Object> pMap) throws Exception {
+		List<Object> result = null;
+		result = this.commonDao.getListData("main.purchaseSelect", pMap);
+		return result;
+	}
+
+	@Override
+	public void purchaseDelete(Map<String, Object> pMap) throws Exception {
+		// 기존 상품 구매 수량 복원
+		ProductVO productVo = null;
+		productVo = (ProductVO) this.commonDao.getReadData("main.selectProductInfo", pMap);
+		int p_buy_amount = Integer.parseInt(productVo.getP_buy_amount());
+		p_buy_amount = p_buy_amount - Integer.parseInt(pMap.get("quantity").toString());
+		pMap.put("p_buy_amount", p_buy_amount);
+		// 상품 테이블 구매 수량 업데이트
+		this.commonDao.updateData("main.productUpdate", pMap);
+		// 구매 목록에서 삭제
+		this.commonDao.deleteData("main.purchaseDelete", pMap);
 	}
 
 }//end class

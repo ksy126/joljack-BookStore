@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cmd.service.MainService;
 import cmd.vo.NoticeVO;
+import cmd.vo.ProductVO;
 import cmd.vo.QaVO;
 
 /**
@@ -43,8 +44,14 @@ public class MainController {
 			@RequestParam Map<String, Object> pMap) throws Exception {
 		ModelAndView mav = new ModelAndView("service/main/main");
 
+		List<Object> newItemList;
 		List<Object> noticeList;
 		List<Object> qaList;
+
+		// New Item 리스트
+		pMap.put("po", 0);
+		pMap.put("ps", 8);
+		newItemList = mainService.productList(pMap);
 
 		// 공지사항 리스트
 		pMap.put("po", 0);
@@ -57,6 +64,7 @@ public class MainController {
 		qaList = mainService.qaList(pMap);
 
 		mav.addObject("pageName", "main");
+		mav.addObject("newItemList", newItemList);
 		mav.addObject("noticeList", noticeList);
 		mav.addObject("qaList", qaList);
 
@@ -65,6 +73,7 @@ public class MainController {
 
 	/**
 	 * 상품 목록
+	 * 
 	 * @param request
 	 * @param response
 	 * @param category
@@ -77,8 +86,7 @@ public class MainController {
 	 */
 	@RequestMapping(value = "/shop/list/{category}.do")
 	public ModelAndView shopList(HttpServletRequest request, HttpServletResponse response,
-			@PathVariable String category,
-			@RequestParam(value = "po", required = false, defaultValue = "0") int po,
+			@PathVariable String category, @RequestParam(value = "po", required = false, defaultValue = "0") int po,
 			@RequestParam(value = "type", required = false, defaultValue = "new") String type,
 			@RequestParam(value = "search", required = false, defaultValue = "") String search,
 			@RequestParam Map<String, Object> pMap) throws Exception {
@@ -103,6 +111,31 @@ public class MainController {
 		mav.addObject("type", type);
 		mav.addObject("search", search);
 		mav.addObject("itemList", itemList);
+		return mav;
+	}
+
+	/**
+	 * 쇼핑몰 상품 상세 페이지 이동
+	 * 
+	 * @param request
+	 * @param response
+	 * @param category
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/details.do")
+	public ModelAndView details(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam(value = "product_no") int product_no) throws Exception {
+		ProductVO productInfo = null;
+		Map<String, Object> pMap = new HashMap<>();
+		pMap.put("product_no", product_no);
+		
+		productInfo = mainService.productInfo(pMap);
+
+		ModelAndView mav = new ModelAndView("service/main/details");
+
+		mav.addObject("productInfo", productInfo);
 		return mav;
 	}
 
@@ -285,4 +318,141 @@ public class MainController {
 		return mav;
 	}
 
+
+	/**
+	 * 쇼핑몰 찜하기 페이지 이동
+	 * 
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/zzim.do")
+	public ModelAndView zzim(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam Map<String, Object> map) throws Exception {
+		List<Object> zzimList = null;
+		ModelAndView mav = new ModelAndView("service/main/zzim");
+		HttpSession session = request.getSession();
+		String member_no = (String) session.getAttribute("member_no");
+
+		if (member_no == null) {
+
+		} else {
+			map.put("member_no", member_no);
+			zzimList = mainService.myZzimList(map);
+			mav.addObject("zzimList", zzimList);
+		}
+
+		return mav;
+	}
+
+	/**
+	 * 쇼핑몰 찜하기 DB 등록
+	 * 
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/productZzimSave.do")
+	public ModelAndView productZzimSave(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam Map<String, Object> map) throws Exception {
+
+		mainService.zzimSave(map);
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("jsonView");
+		return mav;
+	}
+
+	/**
+	 * 쇼핑몰 찜하기 삭제
+	 * 
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/zzimDelete.do")
+	public ModelAndView zzimDelete(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam Map<String, Object> map) throws Exception {
+
+		mainService.zzimDelete(map);
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("jsonView");
+		return mav;
+	}
+
+	/**
+	 * 쇼핑몰 구매하기 DB 등록
+	 * 
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/parchase.do")
+	public ModelAndView parchase(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam Map<String, Object> map) throws Exception {
+
+		mainService.parchase(map);
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("jsonView");
+		return mav;
+	}
+
+	/**
+	 * 쇼핑몰 구매목록 삭제
+	 * 
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/purchaseDelete.do")
+	public ModelAndView purchaseDelete(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam Map<String, Object> map) throws Exception {
+
+		mainService.purchaseDelete(map);
+
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("jsonView");
+		return mav;
+	}
+
+	/**
+	 * 구매목록 페이지 이동
+	 * 
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/cart.do")
+	public ModelAndView cart(HttpServletRequest request, HttpServletResponse response,
+			@RequestParam Map<String, Object> map) throws Exception {
+
+		ModelAndView mav = new ModelAndView("service/main/cart");
+		List<Object> parchaseList = null;
+		HttpSession session = request.getSession();
+		String member_no = (String) session.getAttribute("member_no");
+
+		if (member_no == null) {
+
+		} else {
+			map.put("member_no", member_no);
+			parchaseList = mainService.parchaseList(map);
+			mav.addObject("parchaseList", parchaseList);
+		}
+		return mav;
+	}
+	
 }

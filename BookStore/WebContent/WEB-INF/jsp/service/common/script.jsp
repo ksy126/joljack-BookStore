@@ -7,3 +7,4 @@
 <script src="<%=cp%>/js/serviceJs/price-range.js"></script>
 <script src="<%=cp%>/js/serviceJs/jquery.prettyPhoto.js"></script>
 <script src="<%=cp%>/js/serviceJs/main.js"></script>
+<script src="<%=cp%>/js/serviceJs/navi.js"></script>

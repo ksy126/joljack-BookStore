@@ -16,38 +16,7 @@
 	<section style="margin-top: 3em;margin-bottom: 3em; min-height: 450px;">
 		<div class="container">
 			<div class="row">
-				<c:if test="${category == 'acc' }">
-				<div class="col-sm-12" style="margin-bottom: 3em;">
-					<img src="<%=cp%>/images/sub_list/sub_acc.png" style="width: 100%;">
-				</div>
-				</c:if>
-				<c:if test="${category == 'best' }">
-				<div class="col-sm-12" style="margin-bottom: 3em;">
-					<img src="<%=cp%>/images/sub_list/sub_best.png" style="width: 100%;">
-				</div>
-				</c:if>
-				<c:if test="${category == 'outer' }">
-				<div class="col-sm-12" style="margin-bottom: 3em;">
-					<img src="<%=cp%>/images/sub_list/sub_outer.png" style="width: 100%;">
-				</div>
-				</c:if>
-				<c:if test="${category == 'pants' }">
-				<div class="col-sm-12" style="margin-bottom: 3em;">
-					<img src="<%=cp%>/images/sub_list/sub_pants.png" style="width: 100%;">
-				</div>
-				</c:if>
-				<c:if test="${category == 'shirt' }">
-				<div class="col-sm-12" style="margin-bottom: 3em;">
-					<img src="<%=cp%>/images/sub_list/sub_shirt.png" style="width: 100%;">
-				</div>
-				</c:if>
-				<c:if test="${category == 'top' }">
-				<div class="col-sm-12" style="margin-bottom: 3em;">
-					<img src="<%=cp%>/images/sub_list/sub_top.png" style="width: 100%;">
-				</div>
-				</c:if>
-				
-				<div class="col-sm-12" style="font-size: 14px;">			  
+				<div class="col-sm-12" style="font-size: 14px;">
 					<a href="#" style=" color: black;" onclick="app.categoryGetList('new')">신상품순</a> | 
 					<a href="#" style=" color: black;" onclick="app.categoryGetList('best')">인기순</a> | 
 					<a href="#" style=" color: black;" onclick="app.categoryGetList('highPrice')">높은가격순</a> | 
@@ -56,12 +25,38 @@
 				
 				<div class="col-sm-12">
 					<div class="features_items"><!--features_items-->
-						<c:if test="${category == 'shirt'}">
-							<h2 class="title text-center">SHIRT & KNIT</h2>
+						<c:if test="${category == 'fiction'}">
+							<h2 class="title text-center">소설</h2>
 						</c:if>
-						<c:if test="${category != 'shirt'}">
-							<h2 class="title text-center">${category}</h2>
+						<c:if test="${category == 'selfdevelopment'}">
+							<h2 class="title text-center">자기개발</h2>
 						</c:if>
+						<c:if test="${category == 'poem'}">
+							<h2 class="title text-center">시/에세이</h2>
+						</c:if>
+						<c:if test="${category == 'science'}">
+							<h2 class="title text-center">과학</h2>
+						</c:if>
+						<c:if test="${category == 'humanist'}">
+							<h2 class="title text-center">인문</h2>
+						</c:if>
+						<c:if test="${category == 'religion'}">
+							<h2 class="title text-center">종교/역학</h2>
+						</c:if>
+						<c:if test="${category == 'teenager'}">
+							<h2 class="title text-center">청소년</h2>
+						</c:if>
+						<c:if test="${category == 'child'}">
+							<h2 class="title text-center">아동</h2>
+						</c:if>
+						<c:if test="${category == 'baby'}">
+							<h2 class="title text-center">유아</h2>
+						</c:if>
+						<c:if test="${category == 'travel'}">
+							<h2 class="title text-center">여행</h2>
+						</c:if>
+						
+						
 						<c:forEach var="row" items="${itemList}">
 						<div class="col-xs-3">
 							<div class="product-image-wrapper">
