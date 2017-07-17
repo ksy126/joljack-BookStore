@@ -159,7 +159,7 @@
 						},
 						success : function(data) {
 							alert("구매가 완료 되었습니다.");
-							location.href = "/main/cart.do"
+							location.href = "/main/purchaseList.do"
 						}
 					});
 				}

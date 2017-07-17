@@ -45,6 +45,7 @@
 							<li><a href="/main/main.do" id="menu_main">Home</a></li>
 							<li class="dropdown"><a href="#">Book<i class="fa fa-angle-down"></i></a>
 								<ul role="menu" class="sub-menu">
+									<li><a href="/main/shop/list/it.do">IT</a></li>
 									<li><a href="/main/shop/list/fiction.do">소설</a></li>
 									<li><a href="/main/shop/list/selfdevelopment.do">자기개발</a></li>
 									<li><a href="/main/shop/list/poem.do">시/에세이</a></li>
@@ -60,6 +61,12 @@
 							<li><a href="/main/notice.do" id="menu_notice">Notice</a></li>
 							<li><a href="/main/qa.do">Q n A</a></li>
 						</ul>
+					</div>
+				</div>
+				<div class="col-sm-3" align="center">
+					<div class="search_box pull-right" onkeydown="javascript:if(event.keyCode==13){search.search();}">
+						<input type="text" placeholder="Search" id="searchValue"/>
+						<button onclick="search.search()" class="btn btn-default">검색</button>
 					</div>
 				</div>
 			</div>

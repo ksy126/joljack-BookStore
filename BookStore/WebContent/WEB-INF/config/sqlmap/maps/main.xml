@@ -11,6 +11,9 @@
 		where
 			1=1
 			<choose>
+				<when test="category == 'it'">
+					AND p_category = 'IT'
+				</when>
 				<when test="category == 'fiction'">
 					AND p_category = 'fiction'
 				</when>

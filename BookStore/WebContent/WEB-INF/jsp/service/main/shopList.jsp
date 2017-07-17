@@ -25,6 +25,9 @@
 				
 				<div class="col-sm-12">
 					<div class="features_items"><!--features_items-->
+						<c:if test="${category == 'it'}">
+							<h2 class="title text-center">IT</h2>
+						</c:if>
 						<c:if test="${category == 'fiction'}">
 							<h2 class="title text-center">소설</h2>
 						</c:if>

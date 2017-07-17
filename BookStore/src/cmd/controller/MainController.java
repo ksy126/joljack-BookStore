@@ -95,7 +95,7 @@ public class MainController {
 
 		int poSet = po * DefaultPs;
 
-		List<Object> itemList = null;
+		List<Object> itemList;
 		pMap.put("po", poSet);
 		pMap.put("ps", DefaultPs);
 		pMap.put("category", category);

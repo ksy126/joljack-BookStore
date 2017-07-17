@@ -45,7 +45,20 @@
 
 									<div class="form-group">
 										<label>상품 카테고리</label> <select class="form-control" id="p_category">
+											<c:if test="${productInfo.p_category == 'it' }">
+												<option value="it" selected="selected">IT</option>
+												<option value="selfdevelopment">자기개발</option>
+												<option value="poem">시/에세이</option>
+												<option value="science">과학</option>
+												<option value="humanist">인문</option>
+												<option value="religion">종교/역학</option>
+												<option value="teenager">청소년</option>
+												<option value="child">아동</option>
+												<option value="baby">유아</option>
+												<option value="travel">여행</option>
+											</c:if>
 											<c:if test="${productInfo.p_category == 'fiction' }">
+												<option value="it">IT</option>
 												<option value="fiction" selected="selected">소설</option>
 												<option value="selfdevelopment">자기개발</option>
 												<option value="poem">시/에세이</option>
@@ -58,6 +71,7 @@
 												<option value="travel">여행</option>
 											</c:if>
 											<c:if test="${productInfo.p_category == 'selfdevelopment' }">
+												<option value="it">IT</option>
 												<option value="fiction">소설</option>
 												<option value="selfdevelopment" selected="selected">자기개발</option>
 												<option value="poem">시/에세이</option>
@@ -70,6 +84,7 @@
 												<option value="travel">여행</option>
 											</c:if>
 											<c:if test="${productInfo.p_category == 'poem' }">
+												<option value="it">IT</option>
 												<option value="fiction">소설</option>
 												<option value="selfdevelopment">자기개발</option>
 												<option value="poem" selected="selected">시/에세이</option>
@@ -82,6 +97,7 @@
 												<option value="travel">여행</option>
 											</c:if>
 											<c:if test="${productInfo.p_category == 'science' }">
+												<option value="it">IT</option>
 												<option value="fiction">소설</option>
 												<option value="selfdevelopment">자기개발</option>
 												<option value="poem">시/에세이</option>
@@ -94,6 +110,7 @@
 												<option value="travel">여행</option>
 											</c:if>
 											<c:if test="${productInfo.p_category == 'humanist' }">
+												<option value="it">IT</option>
 												<option value="fiction">소설</option>
 												<option value="selfdevelopment">자기개발</option>
 												<option value="poem">시/에세이</option>
@@ -106,6 +123,7 @@
 												<option value="travel">여행</option>
 											</c:if>
 											<c:if test="${productInfo.p_category == 'religion' }">
+												<option value="it">IT</option>
 												<option value="fiction">소설</option>
 												<option value="selfdevelopment">자기개발</option>
 												<option value="poem">시/에세이</option>
@@ -118,6 +136,7 @@
 												<option value="travel">여행</option>
 											</c:if>
 											<c:if test="${productInfo.p_category == 'teenager' }">
+												<option value="it">IT</option>
 												<option value="fiction">소설</option>
 												<option value="selfdevelopment">자기개발</option>
 												<option value="poem">시/에세이</option>
@@ -130,6 +149,7 @@
 												<option value="travel">여행</option>
 											</c:if>
 											<c:if test="${productInfo.p_category == 'child' }">
+												<option value="it">IT</option>
 												<option value="fiction">소설</option>
 												<option value="selfdevelopment">자기개발</option>
 												<option value="poem">시/에세이</option>
@@ -142,6 +162,7 @@
 												<option value="travel">여행</option>
 											</c:if>
 											<c:if test="${productInfo.p_category == 'baby' }">
+												<option value="it">IT</option>
 												<option value="fiction">소설</option>
 												<option value="selfdevelopment">자기개발</option>
 												<option value="poem">시/에세이</option>
@@ -154,6 +175,7 @@
 												<option value="travel">여행</option>
 											</c:if>
 											<c:if test="${productInfo.p_category == 'travel' }">
+												<option value="it">IT</option>
 												<option value="fiction">소설</option>
 												<option value="selfdevelopment">자기개발</option>
 												<option value="poem">시/에세이</option>
@@ -166,6 +188,7 @@
 												<option value="travel" selected="selected">여행</option>
 											</c:if>
 											<c:if test="${productInfo.p_category == null }">
+												<option value="it">IT</option>
 												<option value="fiction">소설</option>
 												<option value="selfdevelopment">자기개발</option>
 												<option value="poem">시/에세이</option>
