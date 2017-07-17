@@ -95,7 +95,7 @@
 					<div class="features_items" style="margin-bottom: 2em; min-height: 300px;">
 						<h2 class="title text-center" id="newItem">NEW Items</h2>
 						<c:forEach var="row" items="${newItemList}">
-							<div class="col-xs-3">
+							<div class="col-sm-4">
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center" onclick="navi.detailsPage('${row.product_no}')">

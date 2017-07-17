@@ -61,7 +61,7 @@
 						
 						
 						<c:forEach var="row" items="${itemList}">
-						<div class="col-xs-3">
+						<div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center" onclick="navi.detailsPage('${row.product_no}')">

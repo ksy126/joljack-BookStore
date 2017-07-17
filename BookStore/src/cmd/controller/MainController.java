@@ -50,7 +50,7 @@ public class MainController {
 
 		// New Item 리스트
 		pMap.put("po", 0);
-		pMap.put("ps", 8);
+		pMap.put("ps", 6);
 		newItemList = mainService.productList(pMap);
 
 		// 공지사항 리스트
