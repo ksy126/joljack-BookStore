@@ -99,7 +99,7 @@
 								<div class="product-image-wrapper">
 									<div class="single-products">
 										<div class="productinfo text-center" onclick="navi.detailsPage('${row.product_no}')">
-											<img src="/upload/img/${row.p_img}" alt="" />
+											<img src="/upload/img/${row.p_img}" alt="" style="height: 355px;"/>
 											<p>${row.p_name}</p>
 											<h2><i class="fa fa-krw" aria-hidden="true"></i>${row.p_price}</h2>
 										</div>
