@@ -44,19 +44,19 @@
 										판매가 
 										<strong	style="font-size: 25px; color: red;">${productInfo.p_price}</strong>
 										<i style="font-size: 20px; color: red;" class="fa fa-krw fa-1" aria-hidden="true"></i>
-									</span>
+									</span><br>
 									<label>구매 수량:</label>
 									<input type="number" value="1" id="quantity" />
 									<input type="hidden" value="${productInfo.p_amount - productInfo.p_buy_amount}"	id="lastQuantity" />
 									<input type="hidden" value="${productInfo.p_buy_amount}" id="p_buy_amount" />
 								</span>
 								<div class="form-group">
-									<label for="sel1">상품 옵션:&nbsp; </label>
-									<select	class="w3-select" id="option" style="width: 15%;">
-										<option value="Large">Large</option>
-										<option value="Medium">Medium</option>
-										<option value="Small">Small</option>
-									</select>
+<!-- 									<label for="sel1">상품 옵션:&nbsp; </label> -->
+<!-- 									<select	class="w3-select" id="option" style="width: 15%;"> -->
+<!-- 										<option value="Large">Large</option> -->
+<!-- 										<option value="Medium">Medium</option> -->
+<!-- 										<option value="Small">Small</option> -->
+<!-- 									</select> -->
 								</div>
 								<p>
 									<b>총 &nbsp;&nbsp;&nbsp;&nbsp;수량 &nbsp;&nbsp;:&nbsp;&nbsp;</b>

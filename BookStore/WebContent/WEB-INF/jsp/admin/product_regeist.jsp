@@ -204,13 +204,11 @@
 									</div>
 
 									<div class="form-group">
-										<label>상품 가격</label> <input class="form-control" id="p_price"
-											value="${productInfo.p_price}">
+										<label>상품 가격</label> <input class="form-control" id="p_price" value="${productInfo.p_price}">
 									</div>
 
 									<div class="form-group">
-										<label>상품 수량</label> <input class="form-control" id="p_amount"
-											value="${productInfo.p_amount}">
+										<label>상품 수량</label> <input class="form-control" id="p_amount" value="${productInfo.p_amount}">
 									</div>
 
 									<div class="form-group">
