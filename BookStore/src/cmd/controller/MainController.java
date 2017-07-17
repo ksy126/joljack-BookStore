@@ -454,5 +454,19 @@ public class MainController {
 		}
 		return mav;
 	}
-	
+
+	/**
+	 * 팝업 페이지 이동
+	 * 
+	 * @param request
+	 * @param response
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/popup.do")
+	public ModelAndView popup(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ModelAndView mav = new ModelAndView("service/main/popup");
+		return mav;
+	}
 }
