@@ -20,7 +20,7 @@
 							<li><a href="/auth/userLogout.do"><i class="fa fa-lock"></i>로그아웃</a></li>
 						</c:if>
 							<li><a href="/main/zzim.do"><i class="fa fa-star"></i> 장바구니</a></li>
-							<li><a href="/main/purchaseDelete.do"><i class="fa fa-shopping-cart"></i>구매목록</a></li>
+							<li><a href="/main/purchaseList.do"><i class="fa fa-shopping-cart"></i>구매목록</a></li>
 							<li><a href="/auth/join.do"><i class="fa fa-user"></i> 회원가입</a></li>
 						</ul>
 					</div>

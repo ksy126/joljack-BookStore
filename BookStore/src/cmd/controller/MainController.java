@@ -436,12 +436,12 @@ public class MainController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/cart.do")
+	@RequestMapping(value = "/purchaseList.do")
 	public ModelAndView cart(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam Map<String, Object> map) throws Exception {
 
-		ModelAndView mav = new ModelAndView("service/main/cart");
-		List<Object> parchaseList = null;
+		ModelAndView mav = new ModelAndView("service/main/purchase");
+		List<Object> parchaseList;
 		HttpSession session = request.getSession();
 		String member_no = (String) session.getAttribute("member_no");
 

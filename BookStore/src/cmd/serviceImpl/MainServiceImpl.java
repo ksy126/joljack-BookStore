@@ -64,21 +64,21 @@ public class MainServiceImpl implements MainService
 
 	@Override
 	public List<Object> productList(Map<String, Object> pMap) throws Exception {
-		List<Object> resultList = null;
+		List<Object> resultList;
 		resultList = this.commonDao.getListData("main.selectProductList", pMap);
 		return resultList;
 	}
 
 	@Override
 	public ProductVO productInfo(Map<String, Object> pMap) throws Exception {
-		ProductVO resultInfo = null;
+		ProductVO resultInfo;
 		resultInfo = (ProductVO) this.commonDao.getReadData("main.selectProductInfo", pMap);
 		return resultInfo;
 	}
 
 	@Override
 	public List<Object> myZzimList(Map<String, Object> pMap) throws Exception {
-		List<Object> result = null;
+		List<Object> result;
 		result = this.commonDao.getListData("main.selectZzimList", pMap);
 		return result;
 	}
@@ -103,7 +103,7 @@ public class MainServiceImpl implements MainService
 
 	@Override
 	public List<Object> parchaseList(Map<String, Object> pMap) throws Exception {
-		List<Object> result = null;
+		List<Object> result;
 		result = this.commonDao.getListData("main.purchaseSelect", pMap);
 		return result;
 	}
@@ -111,7 +111,7 @@ public class MainServiceImpl implements MainService
 	@Override
 	public void purchaseDelete(Map<String, Object> pMap) throws Exception {
 		// 기존 상품 구매 수량 복원
-		ProductVO productVo = null;
+		ProductVO productVo;
 		productVo = (ProductVO) this.commonDao.getReadData("main.selectProductInfo", pMap);
 		int p_buy_amount = Integer.parseInt(productVo.getP_buy_amount());
 		p_buy_amount = p_buy_amount - Integer.parseInt(pMap.get("quantity").toString());
